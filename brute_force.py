@@ -54,6 +54,41 @@ def allocate_boundaries():
     return intervals
 
 
+def brute_2FA(start, intervals, login2_url):
+    """Records timing data for an individual attack
+    Args:
+        start (string): number to initate brute force at
+        stop (string): number to stop brute force at
+        login2_url (string): url to try 2FA at
+        *Optional csrf (string): **This has been removed to ensure integrity of future CS595 homework assignments
+    Returns:
+        string: response code of either success or failure of last tried number
+    """
+
+    """ Check if value found by another process
+    """
+
+    for i in range(len(intervals['start'])):
+        if(intervals['start'][i] == start):
+            print('Initiating...')
+            stop = int(intervals['stop'][i])
+            print(f'Start {str(start)} end {str(stop)}')
+            break
+
+    for i in range(int(start), int(stop)+1):
+        if(tracker.value == 1):
+            return 'skipped'
+
+        # Insert Login Function here
+        # **This function has been removed to ensure integrity of future CS595 homework assignments**
+        
+        if resp.status_code == 302:
+            print(f'[{code}] 2fa valid with response code {resp.status_code}')
+            tracker.value = 1
+            return 'Code: ' + code
+    return '-'
+
+
 if __name__ == "__main__":
     main()
 
