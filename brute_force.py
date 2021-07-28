@@ -6,7 +6,7 @@ from functools import partial
 from math import floor, ceil
 
 """ Ben Totten
-    Originally a part of a Binary Search using regex to find administrator password using sql injection into a cookie
+    Originally a part of a Binary Search using regex to find administrator password using sql injection into a cookie, this has been adapted to showcase use of map, partial, and threading
     Args:
         site (str): URL to test;
     Expected:
