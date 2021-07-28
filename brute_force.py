@@ -78,7 +78,10 @@ def brute_2FA(start, intervals, login2_url):
     for i in range(int(start), int(stop)+1):
         if(tracker.value == 1):
             return 'skipped'
-
+        
+        # Thank you https://www.geeksforgeeks.org/python-program-to-convert-a-list-to-string/
+        code = ''.join([str(elem) for elem in create_code(i)])
+        
         # Insert Login Function here
         # **This function has been removed to ensure integrity of future CS595 homework assignments**
         
@@ -87,6 +90,34 @@ def brute_2FA(start, intervals, login2_url):
             tracker.value = 1
             return 'Code: ' + code
     return '-'
+
+
+def create_code(start):
+    """Makes 4 digit array out of number
+    Args:
+        start (number): number to convert
+    Returns:
+        string: four digit array of number
+    """
+    code = ['x'] * 4
+    count = 0
+
+    start_string = str(start)
+    length = len(start_string)
+    start_array = []
+    for i in range(length):
+        start_array.append(start_string[i])
+
+    for i in range(length):
+        code.insert(i, start_array[i])
+        code.pop()
+
+    for i in range(4):
+        if code[i] == 'x':
+            code.pop()
+            code.insert(0, '0')
+    return code
+
 
 
 if __name__ == "__main__":
