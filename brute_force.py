@@ -1,4 +1,5 @@
 import sys
+import os
 import requests
 from bs4 import BeautifulSoup
 from multiprocessing import Pool, Value
@@ -17,7 +18,7 @@ from math import floor, ceil
 if(len(sys.argv) > 1):
     site = sys.argv[1]
 
-thread_count = 32   # Number of threads you want to run on
+thread_count = os.cpu_count()   # Number of threads you want to run on
 s = requests.Session()
 tracker = Value('i', 0)
 
